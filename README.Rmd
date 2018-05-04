@@ -6,7 +6,7 @@ output:
 
 # vapeplot
 
-[![Build Status](https://travis-ci.org/seasmith/AlignRegex.svg?branch=master)](https://travis-ci.org/seasmith/vapeplot)
+![Build Status](https://travis-ci.org/seasmith/vapeplot.svg?branch=master)
 
 An R extension of the Python package [`vapeplot`](https://github.com/dantaki/vapeplot)'s color palettes. Design of this package drew on inspiration from `ggplot2::scale_*_viridis_c()` and `ggplot2::scale_*_viridis_d()`, and the [`nordic`](http://github.com/jkaupp/nord) package.
 
