@@ -1,0 +1,115 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+# vapeplot
+
+[![Build Status](https://travis-ci.org/seasmith/AlignRegex.svg?branch=master)](https://travis-ci.org/seasmith/vapeplot)
+
+An R extension of the Python package [`vapeplot`](https://github.com/dantaki/vapeplot)'s color palettes. Design of this package drew on inspiration from `ggplot2::scale_*_viridis_c()` and `ggplot2::scale_*_viridis_d()`, and the [`nordic`](http://github.com/jkaupp/nord) package.
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+library(vapeplot)
+library(ggplot2)
+library(ggridges)
+library(gridExtra)
+
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.path = "man/figures/")
+```
+
+```{r first_plot, fig.width=3, fig.height=3}
+set.seed(3)
+x <- rnorm(500)
+y <- lapply(LETTERS[1:10], rep, times = 50)
+
+df <- data.frame(x = rev(sort(x)), y = rev(unlist(y)))
+
+p1 <- ggplot(df, aes(x = x, y = factor(y, levels = unique(y)))) +
+  geom_density_ridges(aes(fill = y, color = rev(y))) +
+  scale_fill_vapeplot_d(option = "jazzcup", guide = FALSE) +
+  scale_color_vapeplot_d(option = "jazzcup", guide = FALSE) +
+  labs(x = NULL, y = NULL) +
+  scale_x_continuous(expand = c(0,0)) +
+  scale_y_discrete(expand = c(0, 0)) +
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank()
+  )
+```
+
+```{r second_plot, fig.width=3, fig.height=3}
+p2 <- ggplot(faithfuld, aes(waiting, eruptions, z = density)) +
+  geom_raster(aes(fill = density)) +
+  scale_fill_vapeplot_c(option = "sunset") +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  theme_minimal()
+```
+
+```{r third_plot}
+p3 <- ggplot(diamonds, aes(carat, ..count.., fill = cut)) +
+  geom_density(position = "fill") +
+  scale_fill_vapeplot_d(option = "cool") +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  theme_minimal()
+```
+
+```{r fourth_plot}
+crimes <- data.frame(state = tolower(rownames(USArrests)), USArrests)
+crimesm <- reshape2::melt(crimes, id = 1)
+states_map <- map_data("state")
+p4 <-  ggplot(subset(crimesm, variable == "Assault"), aes(map_id = state)) +
+  geom_map(aes(fill = value), map = states_map) +
+  expand_limits(x = states_map$long, y = states_map$lat) +
+  scale_fill_vapeplot_c(option = "crystal_pepsi") +
+  theme_void()
+```
+
+```{r bind_plots}
+gridExtra::grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+## Available Palettes
+
+```{r show_palettes, fig.width=2, fig.height=3, results='hide'}
+lapply(names(vapeplot_palettes), show_palette)
+```
+
+## Examples
+
+```{r for_show, eval=FALSE}
+library(vapeplot)
+library(ggplot2)
+
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = price, color = cut)) +
+  scale_color_vapeplot_d("mallsoft")
+
+ggplot(diamonds) +
+  geom_bar(aes(x = cut, fill = clarity)) +
+  scale_fill_vapeplot_d("seapunk")
+```
+
+```{r for_display, echo=TRUE}
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = price, color = cut), alpha = 0.7) +
+  scale_color_vapeplot_d("mallsoft") +
+  theme_classic()
+
+ggplot(diamonds) +
+  geom_bar(aes(x = cut, fill = clarity)) +
+  scale_fill_vapeplot_d("seapunk") +
+  theme_classic()
+
+df <- data.frame(x = rnorm(100),
+                 y = rgamma(100, shape = 5, rate = 0.1))
+ggplot(df) +
+    geom_point(aes(x, y, color = y)) +
+    scale_color_vapeplot_c() +
+    theme_classic()
+```

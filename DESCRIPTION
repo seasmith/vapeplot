@@ -1,0 +1,15 @@
+Package: vapeplot
+Type: Package
+Title: Vaporwave aesthetics for use in 'ggplot2'
+Version: 0.1.0
+Authors@R: person("Luke", "Smith", email = "lukedansmi@sbcglobal.net",
+    role = c("aut", "cre"))
+URL: https://github.com/seasmith/vapeplot
+BugReports: https://github.com/seasmith/vapeplot/issues
+Description: An R extension of the Python package 'vapeplot' - an extension of
+    matplotlib - that exposes the color palettes for use in R.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports: ggplot2
+RoxygenNote: 6.0.1
