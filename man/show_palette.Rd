@@ -4,15 +4,16 @@
 \alias{show_palette}
 \title{Display a color palette}
 \usage{
-show_palette(option)
+show_palette(...)
 }
 \arguments{
-\item{option}{the name of the palette.}
+\item{...}{the name of the palette or palettes; shows all palettes if no
+argument is give.}
 }
 \description{
 Display a palette in the graphics window by calling its name.
 }
 \examples{
 library(vapeplot)
-show_palette("cool")
+show_palette("cool", "sunset")
 }

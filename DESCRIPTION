@@ -11,5 +11,7 @@ Description: An R extension of the Python package 'vapeplot' - an extension of
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Imports: ggplot2
+Imports:
+    ggplot2,
+    gridExtra
 RoxygenNote: 6.0.1
