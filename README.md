@@ -10,7 +10,7 @@ An R extension of the Python package [`vapeplot`](https://github.com/dantaki/vap
 Available Palettes
 ------------------
 
-![](man/figures/show_palettes-1.png)![](man/figures/show_palettes-2.png)![](man/figures/show_palettes-3.png)![](man/figures/show_palettes-4.png)![](man/figures/show_palettes-5.png)![](man/figures/show_palettes-6.png)![](man/figures/show_palettes-7.png)![](man/figures/show_palettes-8.png)
+![](man/figures/show_palettes-1.png)
 
 Examples
 --------
@@ -34,8 +34,8 @@ ggplot(diamonds) +
 ![](man/figures/for_display-2.png)
 
 ``` r
-df <- data.frame(x = rnorm(100),
-                 y = rgamma(100, shape = 5, rate = 0.1))
+df <- data.frame(x = rnorm(500),
+                 y = rgamma(500, shape = 5, rate = 0.1))
 ggplot(df) +
     geom_point(aes(x, y, color = y)) +
     scale_color_vapeplot_c() +

@@ -67,6 +67,7 @@ p4 <-  ggplot(subset(crimesm, variable == "Assault"), aes(map_id = state)) +
   geom_map(aes(fill = value), map = states_map) +
   expand_limits(x = states_map$long, y = states_map$lat) +
   scale_fill_vapeplot_c(option = "crystal_pepsi") +
+  coord_fixed() +
   theme_void()
 ```
 
@@ -76,8 +77,8 @@ gridExtra::grid.arrange(p1, p2, p3, p4, ncol = 2)
 
 ## Available Palettes
 
-```{r show_palettes, fig.width=2, fig.height=3, results='hide'}
-lapply(names(vapeplot_palettes), show_palette)
+```{r show_palettes, results='hide'}
+show_palette()
 ```
 
 ## Examples
@@ -106,8 +107,8 @@ ggplot(diamonds) +
   scale_fill_vapeplot_d("seapunk") +
   theme_classic()
 
-df <- data.frame(x = rnorm(100),
-                 y = rgamma(100, shape = 5, rate = 0.1))
+df <- data.frame(x = rnorm(500),
+                 y = rgamma(500, shape = 5, rate = 0.1))
 ggplot(df) +
     geom_point(aes(x, y, color = y)) +
     scale_color_vapeplot_c() +
