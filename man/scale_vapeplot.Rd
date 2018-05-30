@@ -12,16 +12,16 @@
 scale_color_vapeplot_c(option = "vaporwave", alpha = 1, reverse = FALSE,
   ...)
 
-scale_color_vapeplot_d(option = "vaporwave", alpha = 1, reverse = FALSE,
+scale_color_vapeplot_d(option = "vaporwave", alpha = 1, reverse = TRUE,
   ...)
 
 scale_colour_vapeplot_c(option = "vaporwave", alpha = 1, reverse = FALSE,
   ...)
 
-scale_colour_vapeplot_d(option = "vaporwave", alpha = 1, reverse = FALSE,
+scale_colour_vapeplot_d(option = "vaporwave", alpha = 1, reverse = TRUE,
   ...)
 
-scale_fill_vapeplot_c(option = "vaporwave", alpha = 1, reverse = TRUE,
+scale_fill_vapeplot_c(option = "vaporwave", alpha = 1, reverse = FALSE,
   ...)
 
 scale_fill_vapeplot_d(option = "vaporwave", alpha = 1, reverse = TRUE,
@@ -29,7 +29,7 @@ scale_fill_vapeplot_d(option = "vaporwave", alpha = 1, reverse = TRUE,
 }
 \arguments{
 \item{option}{Choose from "vaporwave" (default), "cool", "crystal_pepsi",
-"mallsoft", "jazzcup", "sunset", "macplus", "seapunk".}
+"mallsoft", "jazzcup", "sunset", "macplus", or "seapunk".}
 
 \item{alpha}{The alpha transparency, a number in [0,1]}
 

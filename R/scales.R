@@ -2,12 +2,14 @@
 #'
 #' @param n The number of colors (≥ 1) to be in the palette.
 #' @param option Choose from "vaporwave" (default), "cool", "crystal_pepsi",
-#'   "mallsoft", "jazzcup", "sunset", "macplus", "seapunk".
+#'   "mallsoft", "jazzcup", "sunset", "macplus", or "seapunk".
 #' @param alpha The alpha transparency, a number in [0,1]
 #' @param reverse If \code{TRUE}, the direction of the colours is reversed;
-#'   \code{FALSE} is the default.
+#'   \code{FALSE} is the default for continuous scales, \code{TRUE} for
+#'   discrete scales.
 #'
-#' @importFrom grDevices colorRampPalette
+#' @importFrom grDevices colorRamp
+#' @importFrom grDevices rgb
 #'
 #' @rdname vapeplot
 #' @examples
@@ -29,14 +31,15 @@ vapeplot <- function(option = "vaporwave", n, alpha = 1, reverse = FALSE) {
     pal <- rev(pal)
   }
 
-  pal <- colorRampPalette(pal, alpha)(n)
+  pal <- colorRamp(pal, space = "Lab", interpolate = "spline")
+  cols <- pal(seq(0, 1, length.out = n)) / 255
+  fin_cols <- rgb(cols[, 1], cols[, 2], cols[, 3], alpha = alpha)
 
-  return(pal)
+  return(fin_cols)
 
 }
 
 #' @rdname vapeplot
-#' @importFrom grDevices colorRampPalette
 #' @export
 vapeplot_pal <- function(option = "vaporwave", alpha = 1, reverse = FALSE) {
 
@@ -55,7 +58,7 @@ vapeplot_pal <- function(option = "vaporwave", alpha = 1, reverse = FALSE) {
 #'
 #' @inheritParams vapeplot_pal
 #' @param option Choose from "vaporwave" (default), "cool", "crystal_pepsi",
-#'   "mallsoft", "jazzcup", "sunset", "macplus", "seapunk".
+#'   "mallsoft", "jazzcup", "sunset", "macplus", or "seapunk".
 #' @param reverse If \code{TRUE}, the direction of the colours is reversed.
 #' @param alpha The alpha transparency, a number in [0,1]
 #' @param ... additional arguments to pass to \code{scale_color_gradientn} or
@@ -79,7 +82,6 @@ vapeplot_pal <- function(option = "vaporwave", alpha = 1, reverse = FALSE) {
 
 #' @export
 #' @rdname scale_vapeplot
-#' @importFrom ggplot2 scale_colour_manual
 #' @importFrom ggplot2 discrete_scale
 #' @importFrom ggplot2 scale_color_gradientn
 scale_color_vapeplot_c <- function(option = "vaporwave", alpha = 1, reverse = FALSE, ...) {
@@ -88,7 +90,7 @@ scale_color_vapeplot_c <- function(option = "vaporwave", alpha = 1, reverse = FA
 
 #' @export
 #' @rdname scale_vapeplot
-scale_color_vapeplot_d <- function(option = "vaporwave", alpha = 1, reverse = FALSE, ...) {
+scale_color_vapeplot_d <- function(option = "vaporwave", alpha = 1, reverse = TRUE, ...) {
     discrete_scale("colour", "vapeplot", vapeplot_pal(option, alpha = alpha, reverse = reverse), ...)
 }
 
@@ -101,11 +103,10 @@ scale_colour_vapeplot_c <- scale_color_vapeplot_c
 scale_colour_vapeplot_d <- scale_color_vapeplot_d
 
 
-#' @importFrom ggplot2 scale_fill_manual
 #' @importFrom ggplot2 scale_fill_gradientn
 #' @rdname scale_vapeplot
 #' @export
-scale_fill_vapeplot_c <- function(option = "vaporwave", alpha = 1, reverse = TRUE, ...) {
+scale_fill_vapeplot_c <- function(option = "vaporwave", alpha = 1, reverse = FALSE, ...) {
   scale_fill_gradientn(colours = vapeplot(option, 256, alpha = alpha, reverse = reverse), ...)
 }
 

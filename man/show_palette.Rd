@@ -8,7 +8,7 @@ show_palette(...)
 }
 \arguments{
 \item{...}{the name of the palette or palettes; shows all palettes if no
-argument is give.}
+argument is given.}
 }
 \description{
 Display a palette in the graphics window by calling its name.

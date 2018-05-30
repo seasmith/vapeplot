@@ -11,14 +11,15 @@ vapeplot_pal(option = "vaporwave", alpha = 1, reverse = FALSE)
 }
 \arguments{
 \item{option}{Choose from "vaporwave" (default), "cool", "crystal_pepsi",
-"mallsoft", "jazzcup", "sunset", "macplus", "seapunk".}
+"mallsoft", "jazzcup", "sunset", "macplus", or "seapunk".}
 
 \item{n}{The number of colors (≥ 1) to be in the palette.}
 
 \item{alpha}{The alpha transparency, a number in [0,1]}
 
 \item{reverse}{If \code{TRUE}, the direction of the colours is reversed;
-\code{FALSE} is the default.}
+\code{FALSE} is the default for continuous scales, \code{TRUE} for
+discrete scales.}
 }
 \description{
 Create a color ramp from a \code{vapeplot} palette

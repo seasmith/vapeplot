@@ -3,7 +3,7 @@
 #' Display a palette in the graphics window by calling its name.
 #'
 #' @param ... the name of the palette or palettes; shows all palettes if no
-#'   argument is give.
+#'   argument is given.
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 geom_tile
 #' @importFrom ggplot2 aes_

@@ -3,12 +3,16 @@ vapeplot
 
 ![Build Status](https://travis-ci.org/seasmith/vapeplot.svg?branch=master)
 
-An R extension of the Python package [`vapeplot`](https://github.com/dantaki/vapeplot)'s color palettes. Design of this package drew on inspiration from `ggplot2::scale_*_viridis_c()` and `ggplot2::scale_*_viridis_d()`, and the [`nordic`](http://github.com/jkaupp/nord) package.
+An R extension of the Python package [`vapeplot`](https://github.com/dantaki/vapeplot)'s color palettes.
 
 ![](man/figures/bind_plots-1.png)
 
 Available Palettes
 ------------------
+
+``` r
+show_palette()
+```
 
 ![](man/figures/show_palettes-1.png)
 
@@ -43,3 +47,8 @@ ggplot(df) +
 ```
 
 ![](man/figures/for_display-3.png)
+
+Acknowledgements
+----------------
+
+Design of this package drew on inspiration from `ggplot2::scale_*_viridis_c()` and `ggplot2::scale_*_viridis_d()`, and the [`nordic`](http://github.com/jkaupp/nord) package.
